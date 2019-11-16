@@ -11,7 +11,7 @@ app_name=inkscape
 dockerhub_namespace=michalsvorc
 
 # Interpolate additional variables
-docker_tag="${1:-docker_tag_default}"
+docker_tag="${1:-$docker_tag_default}"
 image_name=$dockerhub_namespace/$app_name:$docker_tag
 container_name=$dockerhub_namespace-$app_name-$docker_tag
 mount_path="${PWD}/mount"
