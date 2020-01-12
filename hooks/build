@@ -1,5 +1,5 @@
 #!/bin/bash
-# Author: Michal Svorc <michal@svorc.sk>
-# Build Docker image
+# Author: Michal Svorc <michalsvorc.com>
+# Build Docker image hook
 
-docker build -t $IMAGE_NAME --build-arg DOCKER_TAG=$DOCKER_TAG --build-arg app_name=inkscape .
+docker build -t $IMAGE_NAME --build-arg app_version=$(git describe --tags --abbrev=0) .

@@ -4,9 +4,9 @@
 
 ## Pull
 ```bash
-docker pull michalsvorc/inkscape:<DOCKER_TAG>
+docker pull michalsvorc/gimp:<docker_tag>
 ```
-For list of available DOCKER_TAGs see [Docker Hub repository](https://hub.docker.com/repository/docker/michalsvorc/inkscape/tags).
+[List of Docker tags](https://hub.docker.com/repository/docker/michalsvorc/inkscape/tags)
 
 ## Run
 ```bash
@@ -14,22 +14,23 @@ docker run -it \
     --rm \
     --env DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    --mount type=bind,source=<local_workspace>,target=<container_workspace> \
-    --mount type=bind,source=<local_profile>,target=<container_profile> \
-    --name michalsvorc-inkscape-rm \
-    michalsvorc/inkscape:<DOCKER_TAG>
+    --mount type=bind,source=<host_workspace>,target=<container_workspace> \
+    --name michalsvorc-inkscape \
+    michalsvorc/inkscape:<docker_tag>
 ```
 
-### Bind mounts
-Optional mount directories to for communication between local machine and Docker container.
-- **workspace**: import local files to Inkscape and save Inkscape outputs.
+### Mount directories
+- **workspace**: share images between host and containerized app
 
-## Run helper script
-Execute `./run.sh` helper script to use predefined bind mounts (requires [Xhost](https://jlk.fjfi.cvut.cz/arch/manpages/man/xhost.1)).
+### Run helper script
+Execute `./run.sh` helper script to use project repository mount directories.
 
-Provide Docker tag as an optional argument to run specific tagged image. Defaults to most recent tag when not provided.
+## FAQ
 
-Example:
+### ERROR: unable to open for writing: [Errno 13] Permission denied
+Mount directories should pre-exist on host system and should be writable by group with gid `1000`.
+
+Make directory writable by gid `1000`:
 ```bash
-./run.sh X.Y
-```
+chown -R $(id -u):1000 <directory>
+chmod -R g+w <directory>

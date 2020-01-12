@@ -1,18 +1,28 @@
-FROM alpine:latest
+FROM alpine:3
 
-ARG DOCKER_TAG
-ARG app_name
-ARG user_name=$app_name
+ARG app_version
+ARG user=inkscape
+ARG uid=1000
+ARG group=$user
+ARG gid=$uid
 
 RUN apk add --no-cache --update \
-    inkscape=~${DOCKER_TAG} \
-    ghostscript-fonts \
-    && adduser -D -u 1000 $user_name
+    inkscape=~${app_version} \
+    ttf-freefont
 
-USER $user_name
+RUN addgroup \
+    --gid $gid \
+    $group \
+    && adduser \
+    --uid $uid \
+    --disabled-password \
+    --ingroup $group \
+    $user
 
-RUN mkdir -p /home/$user_name/.local/share
+USER $user
 
-WORKDIR /home/$user_name/workspace
+RUN mkdir -p /home/$user/.local/share
+
+WORKDIR /home/$user/workspace
 
 ENTRYPOINT ["/usr/bin/inkscape"]
