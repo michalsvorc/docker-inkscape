@@ -1,3 +1,2 @@
 .env
-/workspace/*
-!/workspace/.keep
+/workspace
