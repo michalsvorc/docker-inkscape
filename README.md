@@ -5,19 +5,18 @@
 
 ## Pull
 ```bash
-docker pull michalsvorc/gimp:<docker_tag>
+docker pull michalsvorc/inkscape:<docker_tag>
 ```
 [List of Docker tags](https://hub.docker.com/repository/docker/michalsvorc/inkscape/tags)
 
 ## Prerequisites
 
 ### Mount directories
+Mount directories must pre-exist on host system and should be writable by group with id `1000`.
 - **config**: store application settings
 - **workspace**: share images between host and containerized app
 
-Mount directories must pre-exist on host system and should be writable by group with id `1000`.
-
-Execute in CLI:
+Execute in project root directory:
 ```bash
 mkdir -p "${PWD}"/config "${PWD}"/workspace \
 && chown -R $(id -u):1000 "${PWD}"/config "${PWD}"/workspace \
@@ -25,4 +24,4 @@ mkdir -p "${PWD}"/config "${PWD}"/workspace \
 ```
 
 ### Run 
-Execute `./run.sh` script.
+Execute `run.sh` script.
