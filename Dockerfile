@@ -1,28 +1,37 @@
 FROM alpine:3
 
+# Build arguments
 ARG app_version
-ARG user=inkscape
-ARG uid=1000
-ARG group=$user
-ARG gid=$uid
+ARG user_name=user
+ARG user_id=1000
+ARG group_name=mount
+ARG group_id=1000
 
-RUN apk add --no-cache --update \
-    inkscape=~${app_version} \
-    ttf-freefont
+# Update package repositories and install packages
+RUN apk add \
+    --no-cache \
+    --update \
+    ttf-freefont \
+    inkscape=~${app_version}
 
+# Create non-system user
 RUN addgroup \
-    --gid $gid \
-    $group \
+    --gid $group_id \
+    $group_name \
     && adduser \
-    --uid $uid \
+    --uid $user_id \
     --disabled-password \
-    --ingroup $group \
-    $user
+    --ingroup $group_name \
+    $user_name
 
-USER $user
+# Use non-system user
+USER $user_name
 
-RUN mkdir -p /home/$user/.local/share
+# Create directory structure for the application to store metadata
+RUN mkdir -p /home/$user_name/.local/share
 
-WORKDIR /home/$user/workspace
+# Change to workspace directory
+WORKDIR /home/$user_name/workspace
 
+# Runtime entrypoint
 ENTRYPOINT ["/usr/bin/inkscape"]

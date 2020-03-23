@@ -1,24 +1,23 @@
 #!/bin/bash
 # Author: Michal Svorc <michalsvorc.com>
-# Run docker container with predefined mount directories
+# Run Docker container with predefined mount directories
 
-# Image variables
-image_repository='michalsvorc'
-image_name='inkscape'
+# Docker arguments
+image_name='michalsvorc/inkscape'
 image_tag=$(git describe --tags --abbrev=0)
-user_name=$image_name
+container_name="${image_name//\//-}-${image_tag}"
+mount_config_dir_source="${PWD}/config"
+mount_config_dir_target="/home/user/.config/inkscape"
+mount_workspace_dir_source="${PWD}/workspace"
+mount_workspace_dir_target="/home/user/workspace"
 
-# Mount variables
-mount_path="${PWD}"
-dir_workspace_host="${mount_path}/workspace"
-dir_workspace_container="/home/$user_name/workspace"
-
-# Run
+# Docker run
 docker run \
     -it \
     --rm \
     --env DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    --mount type=bind,source=$dir_workspace_host,target=$dir_workspace_container \
-    --name $image_repository-$image_name-$image_tag \
-    $image_repository/$image_name:$image_tag
+    --mount type=bind,source=$mount_workspace_dir_source,target=$mount_workspace_dir_target \
+    --mount type=bind,source=$mount_config_dir_source,target=$mount_config_dir_target \
+    --name $container_name \
+    $image_name:$image_tag
