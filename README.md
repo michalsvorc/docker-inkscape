@@ -3,12 +3,6 @@
 - executable Docker container
 - persistent application settings
 
-## Pull
-```bash
-docker pull michalsvorc/inkscape:<docker_tag>
-```
-[List of Docker tags](https://hub.docker.com/repository/docker/michalsvorc/inkscape/tags)
-
 ## Prerequisites
 ### Mount directories
 - **config**: store application settings
