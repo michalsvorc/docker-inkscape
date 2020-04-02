@@ -12,7 +12,7 @@ RUN apk add \
     --no-cache \
     --update \
     ttf-freefont \
-    inkscape=~${app_version}
+    inkscape=~$app_version
 
 # Create non-system user
 RUN addgroup \

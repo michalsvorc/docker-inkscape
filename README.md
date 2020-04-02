@@ -17,4 +17,3 @@ mkdir -p "${PWD}"/config "${PWD}"/workspace \
 
 ## Run
 Execute `run.sh` script.
-
