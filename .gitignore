@@ -1,3 +1,4 @@
-.env
-/workspace
-/config
+/config/*
+!/config/.keep
+/workspace/*
+!/workspace/.keep
