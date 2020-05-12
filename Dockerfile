@@ -12,7 +12,8 @@ RUN apk add \
     --no-cache \
     --update \
     ttf-freefont \
-    inkscape=~$app_version
+    poppler --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main \
+    inkscape=~$app_version --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
 # Create non-system user
 RUN addgroup \
