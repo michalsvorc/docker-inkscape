@@ -3,6 +3,7 @@
 - based on Alpine Linux
 - executable Docker image
 - persistent application settings
+- edge APK repository
 
 ## Mount directories
 
