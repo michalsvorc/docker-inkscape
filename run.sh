@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author: Michal Svorc <michalsvorc.com>
-# Run Docker container with predefined mount directories
+# Run Docker container
 
 # Source Docker arguments
 source ./.config
