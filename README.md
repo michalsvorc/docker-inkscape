@@ -17,7 +17,7 @@ Execute `run.sh` script.
 
 ### Write access to mounted directories
 
-Mount directories must be writable by group with id `1000`. Execute this command in project root directory:
+Mount directories must be writable by group with id `1000`. Execute these commands in project root directory:
 
 ```bash
 sudo chown -R $(id -u):1000 "${PWD}"/config "${PWD}"/workspace
