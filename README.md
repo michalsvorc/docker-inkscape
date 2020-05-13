@@ -1,7 +1,7 @@
 # [Inkscape](https://inkscape.org/) Docker image
 
 - based on Alpine Linux
-- executable Docker container
+- executable Docker image
 - persistent application settings
 
 ## Mount directories
