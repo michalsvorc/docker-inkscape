@@ -1,8 +1,9 @@
 # [Inkscape](https://inkscape.org/) Docker image
 
 - based on Alpine Linux
-- executable Docker container
-- persistent application settings
+- executable Docker image
+- persistent application settings in mounted directories
+- edge APK repository
 
 ## Mount directories
 
@@ -11,7 +12,7 @@
 
 ## Run
 
-Execute `run.sh` script.
+Execute `./docker.sh run`.
 
 ## Troubleshooting
 
